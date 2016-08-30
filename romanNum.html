@@ -1,87 +1,85 @@
 <HTML>
 <script>
-var romanNum = [];
-var quotient = 0;
-var remain = 0;
-var num = 1737;
-console.log(num);
-document.addEventListener("DOMContentLoaded", function(event) {
-  convertToRoman(num);
-});
+    var romanNum = [];
+    var num = 9494;
+    console.log(num);
+    document.addEventListener("DOMContentLoaded", function(event) {
+        convertToRoman(num);
+    });
 
-function convertToRoman(num) {
-  if(num/1000 >= 1) {
-    quotient = Math.floor(num/1000);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('M');
-      console.log(romanNum);
-    }
-  }
-  remain = num % 1000;
-  D(remain, romanNum);
-}
+    function convertToRoman(num) {
+        var strNum = num + '';
+        var numArr = strNum.split('');
+        console.log(numArr);
+        if (numArr.length > 3) {
+            var thousandsArr = numArr.slice(0, numArr.length - 3);
+            console.log(thousandsArr);
+            var thousands = thousandsArr.join(separator = '');
+            for (i = 0; i < thousands; i++) {
+                romanNum = romanNum.concat('M');
+            }
+            numArr = numArr.slice(thousandsArr.length);
+            console.log(numArr);
+            var numArrLength = numArr.length;
+            console.log(numArrLength);
+        }
+        switch (numArr.length) {
+            case 3:
+                if (numArr[0] == 9) {
+                    romanNum = romanNum.concat('CM');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] == 4) {
+                    romanNum = romanNum.concat('CD');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] >= 5) {
+                    romanNum = romanNum.concat('D');
+                    numArr[0] = numArr[0] % 5;
+                }
+                for (i = 0; i < numArr[0]; i++) {
+                    romanNum = romanNum.concat('C');
+                }
+                numArr = numArr.slice(1);
+            case 2:
+                if (numArr[0] == 9) {
+                    romanNum = romanNum.concat('XC');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] == 4) {
+                    romanNum = romanNum.concat('XL');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] >= 5) {
+                    romanNum = romanNum.concat('L');
+                    numArr[0] = numArr[0] % 5;
+                }
+                for (i = 0; i < numArr[0]; i++) {
+                    romanNum = romanNum.concat('X');
+                }
+                numArr = numArr.slice(1);
 
-function D(remain, romanNum){
-  console.log(romanNum);
-  if(remain/500 >= 1) {
-    var quotient = Math.floor(remain/500);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('D');
+            case 1:
+                if (numArr[0] == 9) {
+                    romanNum = romanNum.concat('IX');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] == 4) {
+                    romanNum = romanNum.concat('IV');
+                    numArr[0] = 0;
+                }
+                else if (numArr[0] >= 5) {
+                    romanNum = romanNum.concat('V');
+                    numArr[0] = numArr[0] % 5;
+                }
+                for (i = 0; i < numArr[0]; i++) {
+                    romanNum = romanNum.concat('I');
+                }
+                break;
+        }
+        var num = romanNum.join(separator = '');
+        console.log(num);
     }
-  }
-  remain = remain % 500;
-  C(remain, romanNum);
-}
-
-function C(remain, romanNum){
-  if(remain/100 >= 1) {
-    var quotient = Math.floor(remain/100);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('C');
-    }
-  }
-  remain = remain % 100;
-  L(remain, romanNum);
-}
-
-function L(remain, romanNum){
-  if(remain/50 >= 1) {
-    var quotient = Math.floor(remain/50);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('L');
-    }
-  }
-  remain = remain % 50;
-  X(remain, romanNum);
-}
-
-function X(remain, romanNum){
-  if(remain/10 >= 1) {
-    var quotient = Math.floor(remain/10);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('X');
-    }
-  }
-  remain = remain % 10;
-  V(remain, romanNum);
-}
-function V(remain, romanNum){
-  if(remain/5 >= 1) {
-    var quotient = Math.floor(remain/5);
-    for(i = 0; i < quotient; i++){
-      romanNum = romanNum.concat('V');
-    }
-  }
-  remain = remain % 5;
-  I(remain, romanNum);
-}
-
-function I(remain, romanNum){
-  for(i = 0; i < remain; i++){
-    romanNum = romanNum.concat('I');
-  }
-   var num = romanNum.join(separator = '');
-   console.log(num);
-}
 </script>
+
 </HTML>
